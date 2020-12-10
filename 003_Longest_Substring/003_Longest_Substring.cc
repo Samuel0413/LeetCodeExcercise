@@ -6,18 +6,21 @@ class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
         int ret = 0;
-        //string cur_string = "";
-        set<char> set;
+        string cur_string = "";
+        //set<char> set;
         int i = 0;
         int j = 0;
         int length = s.length();
         while (i < length && j < length) {
-            if (set.find(s[j]) == set.end()) {
-                set.insert(s[j++]);
+            int index = cur_string.find(s[j]);
+            if (!(index < cur_string.length())) {
+                cur_string += s[j++];
                 ret = max(ret, j-i);
             } else {
-                set.erase(s[i++]);
+                cur_string = cur_string.substr(index+1);
+                i = i + index + 1;
             }
+            //cout<<cur_string<<endl;
         }
         return ret;
         /*while (i < s.length()) {
