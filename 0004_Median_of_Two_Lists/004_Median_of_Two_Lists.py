@@ -32,12 +32,8 @@ class Solution(object):
         if j == l2 and i != l1:
             merged_nums = merged_nums + nums1[i:]
         mid_point = len(merged_nums) // 2
-        print(merged_nums)
-        print(len(merged_nums) % 2 == 0)
-        print(mid_point)
         if (len(merged_nums) % 2) == 0:
             #if it is even length need to sum the left one and divide by 2
-            print
             median = (merged_nums[mid_point] + merged_nums[mid_point-1]) / 2.0
         else:
             median = merged_nums[mid_point]
