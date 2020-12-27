@@ -1,5 +1,5 @@
 """
-Convert number into Roman number
+Convert decimal number into Roman number
 """
 
 class Solution(object):

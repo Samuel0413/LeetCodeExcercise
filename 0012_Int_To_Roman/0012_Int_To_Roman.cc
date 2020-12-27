@@ -1,5 +1,5 @@
 /*
-Convert Roman number into decimal number
+Convert decimal number to roman number
 */
 
 class Solution {
