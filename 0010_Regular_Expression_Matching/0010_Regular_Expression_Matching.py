@@ -13,7 +13,25 @@ class Solution(object):
         :type p: str
         :rtype: bool
         """
-
+        
+        cache = {}
+        def dp(i, j):
+            if (i,j) not in cache:
+                if j >= len(p):
+                    ans = i >= len(s)
+                else:
+                    first_match = i < len(s) and p[j] in {s[i], '.'}
+                    
+                    if j+1 < len(p) and p[j+1] == '*':
+                        ans = dp(i, j+2) or first_match and dp(i+1, j)
+                    else:
+                        ans = dp(i+1, j+1) and first_match
+                cache[(i, j)] = ans
+            return cache[(i, j)]
+        
+        return dp(0, 0)
+        
+        """
         if not p:
             return not s
         
@@ -23,6 +41,7 @@ class Solution(object):
             return self.isMatch(s, p[2:]) or first_match and self.isMatch(s[1:], p)
         else:
             return self.isMatch(s[1:], p[1:]) and first_match
+        """
 
 """
 Example 1:
