@@ -1,7 +1,3 @@
-/*
-Given the head of a linked list, remove the nth node from the end of the list and return its head.
-*/
-
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -15,18 +11,23 @@ Given the head of a linked list, remove the nth node from the end of the list an
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode *cur_node = head;
-        vector<ListNode *> cache = {};
-        while (cur_node != nullptr) {
-            cache.push_back(cur_node);
-            cur_node = cur_node->next;
+        ListNode *low = head;
+        ListNode *up = head;
+        while (true) {
+            up = low;
+            for (int i = 0; i < n; i++) {
+                up = up->next;
+            }
+            if (up == nullptr) {
+                return low->next;
+            }
+            if (up->next == nullptr) {
+                break;
+            }
+            low = low->next;
         }
-        if (cache.size() != n) {
-            cache[cache.size() - n - 1]->next = cache[cache.size() - n]->next;
-        } else {
-            return cache[0]->next;
-        }
-        return cache[0];
+        low->next  = low->next->next;
+        return head;
     }
 };
 
